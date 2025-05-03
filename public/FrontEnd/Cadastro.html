@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/Css/Cadastro.css">
   <link rel="icon" href="/assets/png-transparent-paper-line-gurren-lagann-leaf-text-triangle-removebg-preview.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <script src="../Js/sessao.js"></script>
   <title>Cadastro</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
         <input id="Input_Telefone" type="text" placeholder="Telefone" required>
         <input id="Input_Usuario" type="text" placeholder="Usuário" required>
         <input id="Input_Senha" type="password" placeholder="Senha" required>
-        <button id="drillButton">
+        <button type="button" id="drillButton" onclick="cadastrar()">
           <img id="mecha" src="/assets/mecha.jpg" alt="Gurren Lagann" />
           <img id="drillGif" src="/assets/tengen-toppa-gurren-lagann.gif" alt="Giga Drill Breaker" />
           <span>PERFURE O CÉU!</span>
@@ -28,6 +29,10 @@
         <img id="drillGif" src="/assets/tengen-toppa-gurren-lagann.gif" alt="Giga Drill Breaker" />
         <span  id="toggleText">Login</span>
       </button>
+      <div id="cardErro" style="display:none;">
+        <span id="mensagem_erro"></span>
+      </div>
+      
     </div>
   </div>
 <script src="../Js/Cadastro.js"></script>
@@ -39,10 +44,10 @@ function cadastrar() {
     // aguardar();
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = input_nome.value;
-    var telefoneVar = input_Telefone.value
-    var emailVar = input_Email.value;
-    var senhaVar = input_Senha.value;
+    var nomeVar = Input_Usuario.value;
+    var telefoneVar = Input_Telefone.value
+    var emailVar = Input_Email.value;
+    var senhaVar = Input_Senha.value;
    
 
     // Verificando se há algum campo em branco
@@ -94,9 +99,78 @@ function cadastrar() {
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
-            window.location = "../ PaginaHome.html";
+            window.location = "../PaginaHome/PaginaHome.html";
        }, "2000");
       }
       })
     }
+    function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+function entrar() {
+        var LoginVar = Input_Login.value;
+        var senhaVar = Input_Senha.value;
+
+        if (LoginVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", LoginVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                loginServer: LoginVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "../PaginaHome/PaginaHome.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
 </script>

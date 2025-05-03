@@ -11,9 +11,9 @@ toggleBtn.addEventListener('click', () => {
   if (isLogin) {
     formTitle.textContent = "Login";
     form.innerHTML = `
-      <input type="text" placeholder="Usuário ou Email" required>
-      <input type="password" placeholder="Senha" required>
-      <button id="drillButton">
+      <input id="Input_Login" type="text" placeholder="Usuário ou Email" required>
+      <input id="Input_Senha" type="password" placeholder="Senha" required>
+      <button type="button" onclick="entrar()" id="drillButton">
         <img id="mecha" src="../assets/mecha.jpg" alt="Gurren Lagann" />
         <img id="drillGif" src="../assets/tengen-toppa-gurren-lagann.gif" alt="Giga Drill Breaker" />
         <span>PERFURE O CÉU!</span>
@@ -23,11 +23,11 @@ toggleBtn.addEventListener('click', () => {
   } else {
     formTitle.textContent = "Cadastro";
     form.innerHTML = `
-      <input type="text" placeholder="Email" required>
-      <input type="text" placeholder="Telefone" required>
-      <input type="text" placeholder="Usuário" required>
-      <input type="password" placeholder="Senha" required>
-      <button id="drillButton">
+      <input id="Input_Email" type="text" placeholder="Email" required>
+      <input id="Input_Telefone" type="text" placeholder="Telefone" required>
+      <input id="Input_Usuario" type="text" placeholder="Usuário" required>
+      <input id="Input_Senha" type="password" placeholder="Senha" required>
+      <button id="drillButton" type="button" onclick="cadastrar()">
         <img id="mecha" src="../assets/mecha.jpg" alt="Gurren Lagann" />
         <img id="drillGif" src="../assets/tengen-toppa-gurren-lagann.gif" alt="Giga Drill Breaker" />
         <span>PERFURE O CÉU!</span>
