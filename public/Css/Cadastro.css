@@ -1,31 +1,170 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden; 
-  }
-  
-  .bg-container {
-    background-image: url('../Css/Imagens/background.jpg');
-    background-size: cover;
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .bg-container img {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    display: block;
-  }
-  
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.bg-container {
+  background-image: url('../assets/Sss.webp');
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.1); /* Fundo translúcido */
+  backdrop-filter: blur(10px); /* Vidro fosco */
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  color: #fff;
+  animation: gurrenEntrance 1.2s ease-out forwards;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff0000;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #ffd700;
+  color: black;
+}
+
+/* Estilo do #drillButton */
+#drillButton {
+  position: relative;
+  width: 100%;  /* Garante que o botão ocupa 100% do container */
+  max-width: 321px;  /* Largura máxima */
+  height: 50px;  /* Altura do botão */
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #111;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 0;
+  backdrop-filter: blur(5px);  /* Desfoque de fundo */
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+  overflow: hidden;  /* Garante que qualquer coisa fora do botão seja cortada */
+}
+
+#drillButton span {
+  position: relative;
+  z-index: 2;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Efeito de hover para o botão */
+#drillButton:hover {
+  color: black;  /* Cor do texto ao passar o mouse */
+}
+
+/* Imagens do botão */
+#mecha, #drillGif {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;  /* Aumenta a largura da imagem */
+  height: auto;
+  transform: translate(-50%, -50%);  /* Centraliza a imagem */
+  opacity: 0;  /* Começa invisível */
+  pointer-events: none;
+  transition: opacity 0.3s ease;  /* Anima a opacidade */
+  z-index: 1;
+}
+
+/* Exibindo o "mecha" ao passar o mouse */
+#drillButton:hover #mecha {
+  opacity: 0.5;
+}
+/* Estilo do #drillButton */
+#drillToggle {
+  position: relative;
+  width: 100%;  /* Garante que o botão ocupa 100% do container */
+  max-width: 321px;  /* Largura máxima */
+  height: 50px;  /* Altura do botão */
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #111;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 0;
+  backdrop-filter: blur(5px);  /* Desfoque de fundo */
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+  overflow: hidden;  /* Garante que qualquer coisa fora do botão seja cortada */
+}
+
+#drillToggle span {
+  position: relative;
+  z-index: 2;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Efeito de hover para o botão */
+#drillToggle:hover {
+  color: black;  /* Cor do texto ao passar o mouse */
+}
+/* Exibindo o GIF ao clicar no botão */
+#drillTogglen:active #drillGif {
+  opacity: 1;
+}
+#drillToggle:hover #mecha {
+  opacity: 0.5;
+}
+
+/* Exibindo o GIF ao clicar no botão */
+#drillToggle:active #drillGif {
+  opacity: 1;
+}
