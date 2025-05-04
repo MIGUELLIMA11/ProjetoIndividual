@@ -6,6 +6,7 @@ const form = document.getElementById('form');
 let isLogin = false;
 
 toggleBtn.addEventListener('click', () => {
+    sumirMensagem();
   isLogin = !isLogin;
 
   if (isLogin) {
