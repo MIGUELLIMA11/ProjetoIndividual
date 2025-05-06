@@ -16,7 +16,6 @@
   
   /* Cabeçalho */
 
-
 .header {
     position: fixed;
     top: 0;
@@ -34,8 +33,6 @@
     text-align: center;
     z-index: 1000;
     transition: background-color 0.3s ease;
-    
-   
     border-bottom: 3px solid #f00;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
@@ -184,7 +181,6 @@
     margin-top: -60px; 
   }
   
-  
   .card {
     background-color: #2c2c2c;
     color: #fff;
@@ -237,3 +233,47 @@
     margin-bottom: 90px; 
     margin-top: -90px;   
   }
+.modal {
+  position: fixed;
+  top: 55%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta para que o modal seja 100% centralizado */
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: none; /* Inicialmente escondido */
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+  opacity: 0; /* Modal invisível inicialmente */
+  z-index: 1100; /* Garante que o modal fique sobre outros elementos */
+}
+
+.modal.show {
+  display: flex; /* Exibe o modal */
+  opacity: 1; /* Modal visível */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
