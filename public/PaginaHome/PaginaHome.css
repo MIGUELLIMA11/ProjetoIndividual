@@ -171,6 +171,9 @@
   .icon-Espiral {
     background-image: url('../assets/Espiral.gif');
   }
+  .icon-play{
+    background-image: url(../assets/playIcon.png);
+  }
   .card-container {
     display: flex;
     flex-wrap: wrap;
