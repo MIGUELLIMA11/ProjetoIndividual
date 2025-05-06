@@ -51,9 +51,14 @@
     var emailVar = Input_Email.value;
     var senhaVar = Input_Senha.value;
 
-
-    // Verificando se há algum campo em branco
-    if (
+    if(telefoneVar > 11)
+    {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Numero de telefone inválido! Apenas 11 digitos são aceitos.";
+        finalizarAguardar();
+        return false;
+    } else if (
       nomeVar == "" ||
       telefoneVar == "" ||
       emailVar == "" ||
@@ -61,8 +66,7 @@
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
+        "Preencha todos os campos!";
       finalizarAguardar();
       return false;
     } else {
