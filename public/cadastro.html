@@ -100,7 +100,7 @@
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
           setTimeout(() => {
-            window.location = "../PaginaHome/PaginaHome.html";
+            window.location = "/PaginaHome/PaginaHome.html";
           }, "2000");
         }
       })
@@ -148,7 +148,7 @@
           sessionStorage.NOME_USUARIO = json.nome;
           sessionStorage.ID_USUARIO = json.id;
           setTimeout(function () {
-            window.location = "../PaginaHome/PaginaHome.html";
+            window.location = "/PaginaHome/PaginaHome.html";
           }, 2000); // apenas para exibir o loading
 
         });
