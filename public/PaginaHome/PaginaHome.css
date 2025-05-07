@@ -174,7 +174,7 @@
     background-image: url(../assets/playIcon.png);
   }
   .icon-sair{
-
+    background-image: url();
   }
   .card-container {
     display: flex;
@@ -240,7 +240,7 @@
   }
 .modal {
   position: fixed;
-  top: 55%; /* Centraliza verticalmente */
+  top: 50%; /* Centraliza verticalmente */
   left: 50%; /* Centraliza horizontalmente */
   transform: translate(-50%, -50%); /* Ajusta para que o modal seja 100% centralizado */
   width: 80%;
@@ -261,7 +261,7 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: black;
   padding: 20px;
   border-radius: 10px;
   width: 100%;
