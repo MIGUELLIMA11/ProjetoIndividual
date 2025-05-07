@@ -93,7 +93,6 @@
   .header-nav a:hover {
     color: #f00;
   }
-  
 
   .content-section {
     padding: 60px 20px;
@@ -173,6 +172,9 @@
   }
   .icon-play{
     background-image: url(../assets/playIcon.png);
+  }
+  .icon-sair{
+
   }
   .card-container {
     display: flex;
