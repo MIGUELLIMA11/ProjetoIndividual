@@ -1,45 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Quiz.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-    <title>Quiz - Gurren Lagann</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Quiz.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  <title>Quiz - Gurren Lagann</title>
 </head>
 <body>
-    <header class="header">
-        <h2 class="NomeQuiz">Quiz</h2>
-        <a href="../PaginaHome/PaginaHome.html"><span class="voltar">Voltar</span></a>
-    </header>
-    
-    <div class="fundo">
-    <div class="cardA">
-        <h2>Opção: A <br>
-            Arco da rebelião.
-        </h2>
+  <header class="header">
+    <h2 class="NomeQuiz">Quiz - Gurren Lagann</h2>
+    <a href="../PaginaHome/PaginaHome.html"><span class="voltar">Voltar</span></a>
+  </header>
+
+  <div class="fundo">
+    <div class="pergunta">
+      <h2 id="pergunta">Qual é o nome do arco onde Simon enfrenta o Lord Genome?</h2>
     </div>
-    <div class="cardB">
-        <h2>Opção: B <br>
-            Arco da superficie
-        </h2>
+    <div class="cardA" id="respostaA">
+      <h2>Opção A<br />Arco da Rebelião</h2>
     </div>
-    <br>
-    <div class="cardC">
-        <h2>Opção: C <br>
-        Arco de Teppelin</h2>
+    <div class="cardB" id="respostaB">
+      <h2>Opção B<br />Arco da Superfície</h2>
     </div>
-    <br>
-    <div class="cardD">
-        <h2>Opção: D <br>
-        Arco da dai-gurren</h2>
+    <div class="cardC" id="respostaC">
+      <h2>Opção C<br />Arco de Teppelin</h2>
     </div>
+    <div class="cardD" id="respostaD">
+      <h2>Opção D<br />Arco da Dai-Gurren</h2>
     </div>
+    <button onclick="atualizarPergunta()" id="nextBtn">Proxima pergunta</button>
+  </div>
 </body>
 </html>
 <script>
-    function GerarQuiz() 
-    {
-        
-    }
+const perguntas = [
+  {
+    pergunta: "Qual é o nome do arco onde Simon enfrenta o Lord Genome?",
+    respostas: ["Arco da Rebelião", "Arco da Superfície", "Arco de Teppelin", "Arco da Dai-Gurren"],
+    respostaCerta: "C"
+  },
+  {
+    pergunta: "Quem é o piloto do Gurren Lagann?",
+    respostas: ["Kamina", "Simon", "Yoko", "Nia"],
+    respostaCerta: "B"
+  },
+  {
+    pergunta: "Em que arco Kamina Morre ?",
+    respostas: ["Arco da Rebelião", "Arco da Superfície", "Arco de Teppelin", "Arco da Dai-Gurren"],
+    respostaCerta: "D"
+  },
+  {
+    pergunta: "Qual nome do Gunmen conhecido como cidade dos homens fera ?",
+    respostas: ["Lagann", "Dai-Gurren", "Ganzenbon", "Teppelin"],
+    respostaCerta: "D"
+  },
+];
+
+var perguntaAtual = 0;
+
+function atualizarPergunta() {
+  const perguntaElement = document.getElementById("pergunta");
+  const respostaA = document.getElementById("respostaA");
+  const respostaB = document.getElementById("respostaB");
+  const respostaC = document.getElementById("respostaC");
+  const respostaD = document.getElementById("respostaD");
+
+
+  perguntaElement.textContent = perguntas[perguntaAtual].pergunta;
+
+
+  respostaA.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[0];
+  respostaB.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[1];
+  respostaC.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[2];
+  respostaD.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[3];
+}
+atualizarPergunta();
+function proximaPergunta() {
+  perguntaAtual = (perguntaAtual + 1) % perguntas.length; 
+  atualizarPergunta();
+}
+document.getElementById("nextBtn").addEventListener("click", proximaPergunta);
+
 </script>
