@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfico de Tentativas do Quiz</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    canvas {
+      max-width: 800px;
+      width: 100%;
+      background-color: white;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+<a href="../PaginaHome/PaginaHome.html"><button>Voltar</button></a> 
+  <h2>Tentativas do Quiz</h2>
+  <canvas id="graficoTentativas"></canvas>
+
+  <script>
+    // Função para buscar dados de tentativas do quiz
+    async function obterDadosTentativas() {
+      // O ID do usuário pode ser passado dinamicamente ou fixado como 1
+      const response = await fetch('/quiz/tentativas/1');
+      const dados = await response.json();
+      return dados.reverse(); // Reverte para mostrar as tentativas mais antigas primeiro
+    }
+
+    async function iniciarGrafico() {
+      // Buscando dados do servidor
+      const dadosTentativas = await obterDadosTentativas();
+
+      // Verifica se há dados para exibir
+      if (dadosTentativas.length === 0) {
+        console.log("Nenhuma tentativa encontrada.");
+        return;
+      }
+
+      // Preparando os dados do gráfico
+      const labels = dadosTentativas.map(dado => new Date(dado.DtInicio).toLocaleString());
+      const dadosAcertos = dadosTentativas.map(dado => dado.acertos);
+      const dadosErros = dadosTentativas.map(dado => dado.erros);
+
+      // Dados do gráfico
+      const dados = {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Acertos',
+            data: dadosAcertos,
+            borderColor: 'rgb(75, 192, 192)',  // Cor para acertos
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            fill: true,  // Preencher a área sob a linha
+            tension: 0.1
+          },
+          {
+            label: 'Erros',
+            data: dadosErros,
+            borderColor: 'rgb(199, 52, 52)',  // Cor para erros
+            backgroundColor: 'rgba(199, 52, 52, 0.2)',
+            fill: true,  // Preencher a área sob a linha
+            tension: 0.1
+          }
+        ]
+      };
+
+      const config = {
+        type: 'line', // Tipo de gráfico
+        data: dados,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Data e Hora'
+              },
+              ticks: {
+                autoSkip: true,
+                maxTicksLimit: 7
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Número de Tentativas'
+              },
+              beginAtZero: true
+            }
+          }
+        }
+      };
+
+      const myChart = new Chart(
+        document.getElementById('graficoTentativas'),
+        config
+      );
+
+      // Atualização automática a cada 5 segundos (pode ajustar o intervalo conforme necessário)
+      setInterval(async () => {
+        const novoDado = await obterDadosTentativas();
+        const dadosAtualizados = novoDado[0];  // Dados mais recentes
+
+        // Verifica se os dados mais recentes ainda não estão no gráfico
+        if (dados.labels[dados.labels.length - 1] !== dadosAtualizados.DtInicio) {
+          // Atualiza as labels
+          dados.labels.shift();
+          dados.labels.push(new Date(dadosAtualizados.DtInicio).toLocaleString());
+
+          // Atualiza os dados de acertos e erros
+          dados.datasets[0].data.shift();
+          dados.datasets[0].data.push(dadosAtualizados.acertos);
+
+          dados.datasets[1].data.shift();
+          dados.datasets[1].data.push(dadosAtualizados.erros);
+
+          // Atualiza o gráfico
+          myChart.update();
+        }
+      }, 5000); // Intervalo de 5 segundos
+    }
+
+    // Inicia o gráfico assim que a página carregar
+    iniciarGrafico();
+  </script>
+
+</body>
+</html>

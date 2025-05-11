@@ -28,6 +28,7 @@
         <li><a href="#Espiral"><span class="gunmen-icon icon-Espiral"></span> Espiral</a></li>
         <li><a href="../Quiz/Quiz.html"><span class="gunmen-icon icon-play"></span>Quiz</a></li>
         <li><a href="../cadastro.html"><span class="gunmen-icon icon-sair"></span>Sair</a></li>
+          <li><a href="../Dashboard/Dashboard.html"><span class="gunmen-icon icon-sair"></span>Dashboard</a></li>
       </ul>
     </nav>
   </header>
@@ -35,14 +36,20 @@
   <div id="historia" class="content-section historia">
     <h2>História</h2>
     <div class="card-container">
-      <div class="card">
+      <div class="card"
+      data-title="Inicio da Jornada"
+      data-img="../assets/Superficie.jpeg"
+      data-text="Simón e Kamina descobrem o mundo acima">
         <img src="../assets/Superficie.jpeg" alt="Momento 1">
         <h3>Início da Jornada</h3>
         <p>Simón e Kamina descobrem o mundo acima.</p>
       </div>
-      <div class="card">
+      <div class="card"
+      data-title="A Rebelião"
+      data-img="../assets/rebeliao.jpeg"
+      data-text="A luta contra os homens fera começa a crescer.">
         <img src="../assets/rebeliao.jpeg" alt="Momento 2">
-        <h3>A Rebelião</h3>
+        <h3>A Rebelião</h3> 
         <p>A luta contra os homens fera começa a crescer.</p>
       </div>
     </div>
@@ -87,7 +94,10 @@
   <div id="gunmen" class="content-section gunmen">
     <h2>Gunmen</h2>
     <div class="card-container">
-      <div class="card">
+      <div class="card"
+      data-title="Gurren Lagann"
+      data-img="../assets/MechaGurrenLagann.webp"
+      data-text="A fusão dos Gunmen de Kamina e Simón, símbolo de resistência.">
         <img src="../assets/MechaGurrenLagann.webp" alt="Gurren Lagann">
         <h3>Gurren Lagann</h3>
         <p>A fusão dos Gunmen de Kamina e Simón, símbolo de resistência.</p>
@@ -203,4 +213,4 @@ document.querySelectorAll('.card').forEach(card => {
 function fecharModal() {
   document.getElementById("modal").classList.remove("show");
 }
-</script>
+</script> 

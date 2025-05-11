@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <title>Quiz - Gurren Lagann</title>
 </head>
+
 <body>
   <header class="header">
     <h2 class="NomeQuiz">Quiz - Gurren Lagann</h2>
@@ -29,57 +31,152 @@
     <div class="cardD" id="respostaD">
       <h2>Opção D<br />Arco da Dai-Gurren</h2>
     </div>
-    <button onclick="atualizarPergunta()" id="nextBtn">Proxima pergunta</button>
+    <button onclick="atualizarPergunta()" id="nextBtn">Próxima pergunta</button>
   </div>
+
+  <div id="resultado" style="display: none;">
+    <h3>Resultado</h3>
+    <p>Acertos: <span id="acertos"></span></p>
+    <p>Erros: <span id="erros"></span></p>
+    <p>Respostas Respondidas: <span id="respondidas"></span></p>
+  </div>
+  <button onclick="reiniciarQuiz()" id="restartBtn" style="display: none;">Tentar novamente</button>
 </body>
+
 </html>
+
 <script>
-const perguntas = [
-  {
-    pergunta: "Qual é o nome do arco onde Simon enfrenta o Lord Genome?",
-    respostas: ["Arco da Rebelião", "Arco da Superfície", "Arco de Teppelin", "Arco da Dai-Gurren"],
-    respostaCerta: "C"
-  },
-  {
-    pergunta: "Quem é o piloto do Gurren Lagann?",
-    respostas: ["Kamina", "Simon", "Yoko", "Nia"],
-    respostaCerta: "B"
-  },
-  {
-    pergunta: "Em que arco Kamina Morre ?",
-    respostas: ["Arco da Rebelião", "Arco da Superfície", "Arco de Teppelin", "Arco da Dai-Gurren"],
-    respostaCerta: "D"
-  },
-  {
-    pergunta: "Qual nome do Gunmen conhecido como cidade dos homens fera ?",
-    respostas: ["Lagann", "Dai-Gurren", "Ganzenbon", "Teppelin"],
-    respostaCerta: "D"
-  },
-];
+  const perguntas = [
+    {
+      pergunta: "Qual é o nome do arco onde Simon enfrenta o Lord Genome?",
+      respostas: ["Arco da Rebelião", "Arco da Superfície", "Arco de Teppelin", "Arco da Dai-Gurren"],
+      respostaCerta: "C"
+    },
+    {
+      pergunta: "Quem é o piloto do Gurren Lagann?",
+      respostas: ["Kamina", "Simon", "Yoko", "Nia"],
+      respostaCerta: "B"
+    },
+    {
+      pergunta: "Em que arco Kamina Morre ?",
+      respostas: ["Arco da Rebelião", "Arco da Superfície", "Arco de Teppelin", "Arco da Dai-Gurren"],
+      respostaCerta: "D"
+    },
+    {
+      pergunta: "Qual nome do Gunmen conhecido como cidade dos homens fera ?",
+      respostas: ["Lagann", "Dai-Gurren", "Ganzenbon", "Teppelin"],
+      respostaCerta: "D"
+    },
+    {
+      pergunta: "Quem é o principal antagonista na segunda metade do anime?",
+      respostas: ["Lord Genome", "Anti-Spiral", "Viral", "Rossiu"],
+      respostaCerta: "B"
+    },
+    {
+      pergunta: "Qual é o lema de Kamina?",
+      respostas: [
+        "Não acredite em si mesmo, acredite em mim!",
+        "Quem diabos você pensa que eu sou?",
+        "Lute até o fim!",
+        "Vença ou morra tentando!"
+      ],
+      respostaCerta: "B"
+    },
+    {
+      pergunta: "Qual o nome da arma combinada de Simon e Kamina?",
+      respostas: ["Giga Drill Break", "Giga Drill Maximum", "Drill of Fate", "Break Spiral Cannon"],
+      respostaCerta: "A"
+    },
+    {
+      pergunta: "Qual personagem se torna líder da colônia depois da guerra contra Lord Genome?",
+      respostas: ["Kittan", "Yoko", "Rossiu", "Simon"],
+      respostaCerta: "C"
+    },
+    {
+      pergunta: "Como se chama o mecha final usado por Simon contra o Anti-Spiral?",
+      respostas: ["Gurren Lagann", "Dai-Gurren", "Tengen Toppa Gurren Lagann", "Lagann Infinity"],
+      respostaCerta: "C"
+    },
+    {
+      pergunta: "Qual é o verdadeiro objetivo dos Anti-Spirals?",
+      respostas: [
+        "Dominar todas as galáxias",
+        "Eliminar toda forma de vida humana",
+        "Prevenir a destruição do universo causada pela energia espiral",
+        "Criar um novo império intergaláctico"
+      ],
+      respostaCerta: "C"
+    }
+  ];
 
-var perguntaAtual = 0;
+  var perguntaAtual = 0;
+  var acertos = 0;
+  var erros = 0;
+  var respondidas = 0;
 
-function atualizarPergunta() {
-  const perguntaElement = document.getElementById("pergunta");
-  const respostaA = document.getElementById("respostaA");
-  const respostaB = document.getElementById("respostaB");
-  const respostaC = document.getElementById("respostaC");
-  const respostaD = document.getElementById("respostaD");
+  function atualizarPergunta() {
+    const perguntaElement = document.getElementById("pergunta");
+    const respostaA = document.getElementById("respostaA");
+    const respostaB = document.getElementById("respostaB");
+    const respostaC = document.getElementById("respostaC");
+    const respostaD = document.getElementById("respostaD");
 
+    perguntaElement.textContent = perguntas[perguntaAtual].pergunta;
 
-  perguntaElement.textContent = perguntas[perguntaAtual].pergunta;
+    respostaA.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[0];
+    respostaB.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[1];
+    respostaC.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[2];
+    respostaD.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[3];
 
+    // Limpar seleções anteriores
+    document.querySelectorAll('.cardA, .cardB, .cardC, .cardD').forEach(card => card.classList.remove('selected'));
+  }
 
-  respostaA.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[0];
-  respostaB.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[1];
-  respostaC.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[2];
-  respostaD.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[3];
+  function verificarResposta(resposta) {
+    var respostaCerta = perguntas[perguntaAtual].respostaCerta;
+    
+    if (resposta === respostaCerta) {
+      acertos++;
+    } else {
+      erros++;
+    }
+
+    respondidas++;
+    perguntaAtual++;
+
+    if (perguntaAtual < perguntas.length) {
+      atualizarPergunta();
+    } else {
+      exibirResultado();
+    }
+  }
+
+  function exibirResultado() {
+  document.getElementById("resultado").style.display = "block";
+  document.getElementById("acertos").textContent = acertos;
+  document.getElementById("erros").textContent = erros;
+  document.getElementById("respondidas").textContent = respondidas;
+  document.getElementById("nextBtn").style.display = "none";
+  document.getElementById("restartBtn").style.display = "inline-block";
 }
-atualizarPergunta();
-function proximaPergunta() {
-  perguntaAtual = (perguntaAtual + 1) % perguntas.length; 
+  document.getElementById("respostaA").addEventListener("click", () => verificarResposta("A"));
+  document.getElementById("respostaB").addEventListener("click", () => verificarResposta("B"));
+  document.getElementById("respostaC").addEventListener("click", () => verificarResposta("C"));
+  document.getElementById("respostaD").addEventListener("click", () => verificarResposta("D"));
+
+  atualizarPergunta();
+
+  function reiniciarQuiz() {
+  perguntaAtual = 0;
+  acertos = 0;
+  erros = 0;
+  respondidas = 0;
+
+  document.getElementById("resultado").style.display = "none";
+  document.getElementById("restartBtn").style.display = "none";
+  document.getElementById("nextBtn").style.display = "inline-block";
+
   atualizarPergunta();
 }
-document.getElementById("nextBtn").addEventListener("click", proximaPergunta);
 
 </script>

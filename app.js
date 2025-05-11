@@ -24,6 +24,16 @@ app.use(cors());
 app.use("/", PaginaHomeRouter);
 app.use("/usuarios", usuarioRouter);
 
+const quizRoutes = require('./src/routes/quizRoutes');
+
+// Usar as rotas para quizzes
+app.use('/quiz', quizRoutes);
+
+// Iniciar o servidor
+app.listen(3000, () => {
+    console.log("Servidor rodando na porta 3000");
+});
+
 
 app.listen(PORTA_APP, function () {
     console.log(`

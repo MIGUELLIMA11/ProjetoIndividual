@@ -14,10 +14,13 @@ Acertos int,
 erros int,
 Total int);
 
-Create table Tentativas(
-FkUsuario INT,
-FkQuiz INT,
-idTentativa INT,
-DtInicio datetime,
-DtFinal datetime);
+CREATE TABLE Tentativas (
+    idTentativa INT PRIMARY KEY AUTO_INCREMENT,
+    FkUsuario INT,
+    FkQuiz INT,
+    DtInicio DATETIME,
+    DtFinal DATETIME,
+    FOREIGN KEY (FkUsuario) REFERENCES Usuarios(idUsuario),
+    FOREIGN KEY (FkQuiz) REFERENCES Quiz(idQuiz)
+);
 

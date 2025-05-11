@@ -18,23 +18,21 @@ html {
     scroll-margin-top: 150px;
     overflow-y: hidden;
     overflow-x: hidden;
+    overflow: hidden;
 }
 
 .fundo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);/
+    backdrop-filter: blur(10px);
     border-radius: 30px;
     padding: 40px;
-    width: 800px;
-    height: auto; 
+    max-width: 800px;
+    min-height: 450px; 
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    justify-content: center; /* garante centralização vertical interna */
 }
 
 .NomeQuiz {
@@ -162,9 +160,11 @@ html {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); 
     width: 80%; 
     text-align: center; 
+
+    overflow:hidden
 }
 #nextBtn {
-    background-color: #f00; /
+    background-color: #f00; 
     color: #fff; 
     font-size: 1.2rem; 
     font-family: 'Orbitron', sans-serif; 
