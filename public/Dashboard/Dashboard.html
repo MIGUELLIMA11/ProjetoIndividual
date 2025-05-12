@@ -16,10 +16,11 @@
       padding: 20px;
     }
     canvas {
-      max-width: 800px;
+      max-width: 500px;
       width: 100%;
       background-color: white;
       border-radius: 8px;
+      max-height: 400px;
     }
   </style>
 </head>
@@ -59,24 +60,22 @@
           {
             label: 'Acertos',
             data: dadosAcertos,
-            borderColor: 'rgb(75, 192, 192)',  // Cor para acertos
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            fill: true,  // Preencher a área sob a linha
+            borderColor: 'rgb(0, 255, 0)',  
+            backgroundColor: 'rgb(0, 255, 0)',
             tension: 0.1
           },
           {
             label: 'Erros',
             data: dadosErros,
-            borderColor: 'rgb(199, 52, 52)',  // Cor para erros
-            backgroundColor: 'rgba(199, 52, 52, 0.2)',
-            fill: true,  // Preencher a área sob a linha
+            borderColor: 'rgb(255, 0, 0)', 
+            backgroundColor: 'rgb(255, 0, 0)',
             tension: 0.1
           }
         ]
       };
 
       const config = {
-        type: 'line', // Tipo de gráfico
+        type: 'bar', 
         data: dados,
         options: {
           responsive: true,
