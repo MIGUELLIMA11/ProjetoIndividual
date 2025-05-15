@@ -23,10 +23,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use("/", PaginaHomeRouter);
 app.use("/usuarios", usuarioRouter);
-
+const graficoRoutes = require('./src/routes/medidas');
+app.use('/medidas', graficoRoutes);
 const quizRoutes = require('./src/routes/quizRoutes');
-
-// Usar as rotas para quizzes
 app.use('/quiz', quizRoutes);
 
 // Iniciar o servidor

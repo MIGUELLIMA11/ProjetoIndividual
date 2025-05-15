@@ -51,13 +51,12 @@
     var emailVar = Input_Email.value;
     var senhaVar = Input_Senha.value;
 
-    if(telefoneVar > 11)
-    {
+    if (telefoneVar > 11) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "Numero de telefone inválido! Apenas 11 digitos são aceitos.";
-        finalizarAguardar();
-        return false;
+      finalizarAguardar();
+      return false;
     } else if (
       nomeVar == "" ||
       telefoneVar == "" ||
@@ -100,6 +99,7 @@
             sessionStorage.EMAIL_USUARIO = json.email;
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.id;
+
           })
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
@@ -116,7 +116,6 @@
     sumirMensagem();
     var LoginVar = Input_Login.value;
     var senhaVar = Input_Senha.value;
-
     if (LoginVar == "" || senhaVar == "") {
       cardErro.style.display = "block"
       mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
