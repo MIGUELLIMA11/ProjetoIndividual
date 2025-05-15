@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Gurren Lagann Quiz</title>
-    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="/Dashboard/dash.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 </head>
 <body>
     <header class="header">
@@ -36,9 +35,13 @@
             <div id="graficos" class="graficos"></div>
         </section>
     </main>
+    
 </body>
 </html>
 <script>
+    
+ var idUsuario = sessionStorage.getItem('ID_USUARIO');
+ console.log("ID_USUARIO:", sessionStorage.getItem("ID_USUARIO"));
 
    function exibirGrafico(idUsuario) {
         
@@ -74,7 +77,7 @@
         btnExibir.classList.add("btn-pink")
     }
 
- var idUsuario = sessionStorage.getItem('ID_USUARIO');
+
  let proximaAtualizacao;
     if (idUsuario) {
         // Exibir o nome do usuário na interface
@@ -111,12 +114,12 @@ function obterDadosGrafico(idUsuario) {
         })
         .catch(error => console.error("Erro ao obter dados de gráfico: ", error));
 }
-  console.log(idUsuario)
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta, idUsuario
     ) {
+        
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -149,9 +152,9 @@ function obterDadosGrafico(idUsuario) {
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.Acertos);
-            dados.datasets[1].data.push(registro.Erros);
+            labels.push(new Date(registro.dt_inicio).toLocaleTimeString());
+            dados.datasets[0].data.push(registro.acertos);
+            dados.datasets[1].data.push(registro.erros);
         }
 
         console.log('----------------------------------------------')
@@ -161,6 +164,16 @@ function obterDadosGrafico(idUsuario) {
         console.log('Dados:')
         console.log(dados.datasets)
         console.log('----------------------------------------------')
+        // Verifica se já existe o canvas, senão cria
+let divGraficos = document.getElementById('graficos');
+let graficoExistente = document.getElementById(`myChartCanvas${idUsuario}`);
+
+if (!graficoExistente) {
+    let canvas = document.createElement('canvas');
+    canvas.id = `myChartCanvas${idUsuario}`;
+    divGraficos.appendChild(canvas);
+}
+
 
         // Criando estrutura para plotar gráfico - config
         const config = {
