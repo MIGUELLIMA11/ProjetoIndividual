@@ -6,16 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../PaginaHome/PaginaHome.css">
   <link rel="icon" href="../assets/Icon.png" type="image/x-icon">
+  <script src="../Js/sessao.js"></script>
   <title>Gurren Lagann - Home</title>
 </head>
 
 <body>
   <header class="header">
     <div class="header-content">
-      <h1>
+     <h1>
         <span class="gunmen-icon"></span> Gurren Lagann
       </h1>
       <p>Prepare-se para perfurar o céu com os Gunmen!</p>
+    </div>
     </div>
 
     <nav class="header-nav">
@@ -28,28 +30,31 @@
         <li><a href="#Espiral"><span class="gunmen-icon icon-Espiral"></span> Espiral</a></li>
         <li><a href="../Quiz/Quiz.html"><span class="gunmen-icon icon-play"></span>Quiz</a></li>
         <li><a href="../cadastro.html"><span class="gunmen-icon icon-sair"></span>Sair</a></li>
-          <li><a href="../Dashboard/Dashboard.html"><span class="gunmen-icon icon-sair"></span>Dashboard</a></li>
       </ul>
+
+    <a href="../Profile/profile.html"><div class="user-info" id="userInfo">
+  <div class="user-avatar"></div>
+  <span id="b_usuario">Usuário</span>
+</div></a>  
     </nav>
+        <div class="auth-buttons">
+      <a href="../cadastro.html"><button class="btn-login" id="btn-login">Login</button></a>
+      <a href="../cadastro.html"><button class="btn-cadastro" id="btn-cadastro">Cadastro</button></a>
+    </div>
   </header>
 
   <div id="historia" class="content-section historia">
     <h2>História</h2>
     <div class="card-container">
-      <div class="card"
-      data-title="Inicio da Jornada"
-      data-img="../assets/Superficie.jpeg"
-      data-text="Simón e Kamina descobrem o mundo acima">
+      <div class="card" data-title="Inicio da Jornada" data-img="../assets/Superficie.jpeg" data-id="inicio">
         <img src="../assets/Superficie.jpeg" alt="Momento 1">
         <h3>Início da Jornada</h3>
         <p>Simón e Kamina descobrem o mundo acima.</p>
       </div>
-      <div class="card"
-      data-title="A Rebelião"
-      data-img="../assets/rebeliao.jpeg"
-      data-text="A luta contra os homens fera começa a crescer.">
+      <div class="card" data-title="A Rebelião" data-img="../assets/rebeliao.jpeg"
+        data-id="rebelião">
         <img src="../assets/rebeliao.jpeg" alt="Momento 2">
-        <h3>A Rebelião</h3> 
+        <h3>A Rebelião</h3>
         <p>A luta contra os homens fera começa a crescer.</p>
       </div>
     </div>
@@ -57,34 +62,22 @@
   <div id="personagens" class="content-section personagens">
     <h2>Personagens</h2>
     <div class="card-container">
-      <div class="card simon" 
-           data-title="Simón"
-           data-img="../assets/download.jpeg"
-           data-text="Simón começa como um escavador medroso vivendo no subterrâneo. Ao encontrar Lagann e com a inspiração de Kamina, ele se torna um símbolo de coragem e crescimento, liderando a humanidade rumo ao futuro.">
+      <div class="card simon" data-title="Simón" data-img="../assets/download.jpeg" data-id="simon">
         <img src="../assets/download.jpeg" alt="Simón">
         <h3>Simón</h3>
         <p>O escavador tímido que se torna um herói lendário.</p>
       </div>
-      <div class="card kamina" 
-           data-title="Kamina"
-           data-img="../assets/Kamina.jpeg"
-           data-text="Kamina é o líder carismático que representa o espírito indomável da revolução. Com sua ousadia e coragem, ele inspira Simón e os outros a lutar pela liberdade contra a tirania dos homens-fera, desafiando os limites da própria realidade.">
+      <div class="card kamina" data-title="Kamina" data-img="../assets/Kamina.jpeg" data-id="kamina">
         <img src="../assets/Kamina.jpeg" alt="Kamina">
         <h3>Kamina</h3>
         <p>Líder ousado que inspira todos a seguir em frente.</p>
       </div>
-      <div class="card yoko" 
-           data-title="Yoko"
-           data-img="../assets/NickYoko.jpg"
-           data-text="Yoko é uma atiradora experiente com uma mira excepcional. Sua habilidade em combate e sua força de vontade a tornam uma aliada essencial na luta pela liberdade, ao lado de Simón e Kamina, desafiando o sistema opressor dos homens-fera.">
+      <div class="card yoko" data-title="Yoko" data-img="../assets/NickYoko.jpg" data-id="yoko">
         <img src="../assets/NickYoko.jpg" alt="Yoko">
         <h3>Yoko</h3>
         <p>Atiradora habilidosa com uma mira impecável.</p>
       </div>
-      <div class="card nia" 
-           data-title="Nia"
-           data-img="../assets/Ния Тэппелин _ Nia Teppelin.jpeg"
-           data-text="Nia é uma misteriosa e enigmática garota, que inicialmente se mostra uma princesa de uma raça alienígena. Sua conexão com o destino de Simón e sua luta contra o Anti-Espiral se tornam essenciais para o futuro da humanidade e o equilíbrio do universo.">
+      <div class="card nia" data-title="Nia" data-img="../assets/Ния Тэппелин _ Nia Teppelin.jpeg" data-id="nia">
         <img src="../assets/Ния Тэппелин _ Nia Teppelin.jpeg" alt="Nia">
         <h3>Nia</h3>
         <p>Uma misteriosa garota que muda o rumo da história.</p>
@@ -94,25 +87,26 @@
   <div id="gunmen" class="content-section gunmen">
     <h2>Gunmen</h2>
     <div class="card-container">
-      <div class="card"
-      data-title="Gurren Lagann"
-      data-img="../assets/MechaGurrenLagann.webp"
-      data-text="A fusão dos Gunmen de Kamina e Simón, símbolo de resistência.">
+      <div class="card gurren" data-title="Gurren Lagann" data-img="../assets/MechaGurrenLagann.webp"
+        data-id="gurrenlagann">
         <img src="../assets/MechaGurrenLagann.webp" alt="Gurren Lagann">
         <h3>Gurren Lagann</h3>
         <p>A fusão dos Gunmen de Kamina e Simón, símbolo de resistência.</p>
       </div>
-      <div class="card">
+      <div class="card lagann" data-title="Lagann" data-img="../assets/MechaLagann.webp"
+        data-id="lagann">
         <img src="../assets/MechaLagann.webp" alt="Lagann">
         <h3>Lagann</h3>
         <p>O pequeno Gunmen de Simón com poder de perfuração.</p>
       </div>
-      <div class="card">
+      <div class="card dai-gurren" data-title="Dai-gurren" data-img="../assets/th.jpeg"
+        data-id="dai-gurren">
         <img src="../assets/th.jpeg" alt="Dai-gurren">
         <h3>Dai-gurren</h3>
         <p>A junção de lagann com o grand mecha arc.</p>
       </div>
-      <div class="card">
+      <div class="card Ganzenbon" data-title="Ganzenbon" data-img="../assets/ganzenjpg.jpg"
+        data-id="ganzenbon">
         <img src="../assets/ganzenjpg.jpg" alt="Ganzenbon">
         <h3>Ganzenbon</h3>
         <p>O mecha do anti-espiral, Gunmen feito para combater o poder espiral</p>
@@ -122,39 +116,45 @@
   <div id="universo" class="content-section universo">
     <h2>Universo</h2>
     <div class="card-container">
-      <div class="card">
-        <img src="../assets/mundo-subterraneo.jpg" alt="Mundo Subterrâneo">
+      <div class="card" data-title="Mundo Subterrâneo" data-img="../assets/Giha.webp"
+        data-id="subterraneo">
+        <img src="../assets/Giha.webp" alt="Mundo Subterrâneo">
         <h3>Mundo Subterrâneo</h3>
-        <p>Onde os humanos viviam antes de conhecer a superfície.</p>
+        <p>Onde os humanos viviam antes de conhecer a superfície, vila de Giha onde nasceram simon e kamina.</p>
       </div>
-      <div class="card">
-        <img src="../assets/superficie.jpg" alt="Superfície">
-        <h3>Superfície</h3>
-        <p>O mundo aberto e perigoso onde começa a revolução humana.</p>
+      <div class="card" data-title="Tepellin" data-img="../assets/Teppelin.webp"
+        data-id="Tepellin">
+        <img src="../assets/Teppelin.webp" alt="Tepellin">
+        <h3>Tepellin</h3>
+        <p>Cidade dos homens fera, um dos maiores gunmens ja feito sendo base do Lordgenome. Destruida após o arco de Tepellin.</p>
       </div>
-      <div class="card">
-        <img src="../assets/galaxia-espiral.jpg" alt="Galáxia Espiral">
-        <h3>Galáxia Espiral</h3>
-        <p>Um cosmos imenso dominado por civilizações energéticas.</p>
+      <div class="card" data-title="Galaxia Anti-Espiral" data-img="../assets/Sss.webp"
+        data-id="galaxia-Antiespiral">
+        <img src="../assets/Sss.webp" alt="Galáxia Espiral">
+        <h3>Galáxia Anti-Espiral</h3>
+        <p>Um cosmos imenso dominado pela temivel civilização anti-espiral, inimigos principais do anime.</p>
       </div>
     </div>
   </div>
   <div id="batalhas" class="content-section batalhas">
     <h2>Batalhas</h2>
     <div class="card-container">
-      <div class="card">
-        <img src="../assets/kamina-vs-viral.jpg" alt="Kamina vs Viral">
+      <div class="card" data-title="Kamina vs Viral" data-img="../assets/fight.jpg"
+        data-id="KaminaViral">
+        <img src="../assets/fight.jpg" alt="Kamina vs Viral">
         <h3>Kamina vs Viral</h3>
         <p>Primeiro grande embate que desafia os Gunmen do Rei Espiral.</p>
       </div>
-      <div class="card">
-        <img src="../assets/gurren-vs-lordgenome.jpg" alt="Gurren Lagann vs Lordgenome">
+      <div class="card"  data-title="Gurren Lagann vs Lordgenome" data-img="../assets/fight2.jpg"
+        data-id="SimonLord">
+        <img src="../assets/fight2.jpg" alt="Gurren Lagann vs Lordgenome">
         <h3>Gurren Lagann vs Lordgenome</h3>
         <p>A luta decisiva contra o tirano do mundo subterrâneo.</p>
       </div>
-      <div class="card">
-        <img src="../assets/tengen-toppa.jpg" alt="Tengen Toppa vs Anti-Espiral">
-        <h3>Tengen Toppa vs Anti-Espiral</h3>
+      <div class="card"  data-title="Simon vs Anti-Espiral" data-img="../assets/fight3.webp"
+        data-id="SimonEspiral">
+        <img src="../assets/fight3.webp" alt="Tengen Toppa vs Anti-Espiral">
+        <h3>Simon vs Anti-Espiral</h3>
         <p>O confronto final que decide o destino do universo.</p>
       </div>
     </div>
@@ -162,55 +162,379 @@
   <div id="Espiral" class="content-section Espiral">
     <h2>Espiral</h2>
     <div class="card-container">
-      <div class="card">
-        <img src="../assets/energia-espiral.jpg" alt="Energia Espiral">
+      <div class="card" data-title="Energia Espiral" data-img="../assets/Energia.webp"
+        data-id="EnergiaEspiral">
+        <img src="../assets/Energia.webp" alt="Energia Espiral">
         <h3>Energia Espiral</h3>
         <p>Força vital que cresce com a determinação e esperança.</p>
       </div>
-      <div class="card">
-        <img src="../assets/anti-espiral.jpg" alt="Anti-Espiral">
+      <div class="card" data-title="Anti-Espiral" data-img="../assets/antiespiral.jpg"
+        data-id="EnergiaEspiral">
+        <img src="../assets/antiespiral.jpg" alt="Anti-Espiral">
         <h3>Anti-Espiral</h3>
         <p>Oponentes que temem o crescimento infinito da espiral.</p>
       </div>
-      <div class="card">
-        <img src="../assets/legado-espiral.jpg" alt="Legado Espiral">
+      <div class="card" data-title="Legado Espiral" data-img="../assets/Legado.jpg"
+        data-id="EnergiaEspiral">>
+        <img src="../assets/Legado.jpg" alt="Legado Espiral">
         <h3>Legado Espiral</h3>
         <p>A herança deixada para as futuras gerações humanas.</p>
       </div>
     </div>
   </div>
   <!-- Modal -->
-<div id="modal" class="modal hidden">
-  <div class="modal-content">
-    <span class="close-button" onclick="fecharModal()">×</span>
-    <h3 id="modal-title"></h3>
-    <img id="modal-img" src="" alt="">
-    <p id="modal-text"></p>
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button" onclick="fecharModal()">×</span>
+      <h3 id="modal-title"></h3>
+      <img id="modal-img" src="" alt="">
+
+      <div id="modal-info">
+        <p id="modal-resumo" class="modal-resumo"></p>
+
+        <ul id="modal-ficha" class="modal-ficha">
+          <!-- Preenchido dinamicamente -->
+        </ul>
+
+        <div id="modal-destaques">
+          <h4>Momentos marcantes:</h4>
+          <ul id="modal-momentos">
+            <!-- Preenchido dinamicamente -->
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 </body>
 </html>
 <script>
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => {
-    // Pega as informações dos dados customizados (data-*).
-    const title = card.getAttribute('data-title');
-    const img = card.getAttribute('data-img');
-    const text = card.getAttribute('data-text');
+  const textosDetalhados = {
+    simon: {
+      resumo: "Simón começa como um escavador medroso. Ao longo da série, ele cresce e lidera a humanidade.",
+      ficha: {
+        "Idade inicial": "14 anos",
+        "Parceiro": "Kamina",
+        "Mecha": "Lagann / Gurren Lagann"
+      },
+      momentos: [
+        "Descobre Lagann no subterrâneo",
+        "Primeira fusão com Gurren",
+        "Enfrenta Lordgenome",
+        "Lidera o combate final contra o Anti-Espiral"
+      ]
+    },
+    kamina: {
+      resumo: "Kamina é o líder impetuoso e inspirador que motiva Simón a acreditar em si mesmo.",
+      ficha: {
+        "Idade": "17 anos",
+        "Frase icônica": "Acredite em você que acredita em mim!",
+        "Mecha": "Gurren"
+      },
+      momentos: [
+        "Liberta a vila de Jiha",
+        "Funde Gurren e Lagann",
+        "Sacrifício na luta contra Thymilph"
+      ]
+    },
+    yoko: {
+      resumo: "Yoko é uma atiradora habilidosa e estratégica. Atua como suporte essencial em batalhas e é emocionalmente forte.",
+      ficha: {
+        "Idade": "14 anos (aparência mais velha)",
+        "Arma": "Rifle de precisão",
+        "Função": "Atiradora de elite e estrategista"
+      },
+      momentos: [
+        "Ajuda Simón e Kamina na superfície",
+        "Protege sua vila de ataques de Gunmen",
+        "Relacionamento próximo com Kamina",
+        "Participa da batalha final contra o Anti-Espiral"
+      ]
+    },
+    nia: {
+      resumo: "Nia é uma garota misteriosa e gentil que tem um papel crucial na luta contra o Anti-Espiral.",
+      ficha: {
+        "Origem": "Filha de Lordgenome",
+        "Tipo": "Humano geneticamente modificado",
+        "Relação com Simón": "Noiva"
+      },
+      momentos: [
+        "É encontrada por Simón em um contêiner",
+        "Confronta seu pai, Lordgenome",
+        "Descobre sua conexão com o Anti-Espiral",
+        "Casa-se com Simón antes de desaparecer"
+      ]
+    },
+    gurrenlagann: {
+    resumo: "Gurren Lagann é a poderosa combinação dos mechas Lagann e Gurren, pilotado por Simón e Kamina. Tornou-se símbolo da resistência humana.",
+    ficha: {
+      "Pilotos": "Simón e Kamina",
+      "Origem": "Fusão de Gurren e Lagann",
+      "Capacidades": "Perfuração, voo, combinação com outros mechas"
+    },
+    momentos: [
+      "Primeira fusão durante batalha contra um Gunmen inimigo",
+      "Batalhas marcantes contra os Quatro Generais do Rei Espiral",
+      "Entrada triunfal na luta contra Lordgenome"
+    ]
+  },
+  lagann: {
+    resumo: "Lagann é o pequeno mecha descoberto por Simón no subsolo. Sua habilidade de perfuração e combinação é vital para a evolução da equipe.",
+    ficha: {
+      "Piloto": "Simón",
+      "Habilidade especial": "Perfuração e fusão com outros mechas",
+      "Descoberta": "Encontrado por Simón na vila de Jiha"
+    },
+    momentos: [
+      "Descoberto no início da série por Simón",
+      "Fusão com Gurren durante batalha crítica",
+      "Penetração em mechas inimigos usando brocas expansíveis"
+    ]
+  },
 
-    // Atualiza o conteúdo do modal com as informações do card.
-    document.getElementById("modal-title").innerText = title;
-    document.getElementById("modal-img").src = img;
-    document.getElementById("modal-img").alt = title;
-    document.getElementById("modal-text").innerText = text;
+  "dai-gurren": {
+    resumo: "Dai-Gurren é um gigantesco Gunmen conquistado pela equipe de Simón. Serve como base móvel e plataforma de lançamento.",
+    ficha: {
+      "Tamanho": "Gigantesco",
+      "Função": "Quartel-general móvel",
+      "Origem": "Gunmen inimigo capturado"
+    },
+    momentos: [
+      "Capturado após uma difícil batalha contra o inimigo",
+      "Transformado na base de operações da equipe Dai-Gurren",
+      "Utilizado para alcançar a base do Rei Espiral"
+    ]
+  },
 
-    // Exibe o modal.
-    document.getElementById("modal").classList.add("show");
+  ganzenbon: {
+    resumo: "Ganzenbon é um Gunmen do Anti-Espiral, criado para suprimir a força espiral. É temido por sua resistência e poder destrutivo.",
+    ficha: {
+      "Afiliado": "Anti-Espiral",
+      "Capacidade": "Neutralizar poder espiral",
+      "Armas": "Feixes de energia e barreiras dimensionais"
+    },
+    momentos: [
+      "Aparece durante o confronto no campo anti-espiral",
+      "Combate feroz contra Gurren Lagann",
+      "Destruído por um golpe final carregado de energia espiral"
+    ]
+  },
+  
+  inicio: {
+    resumo: "Simón e Kamina vivem no mundo subterrâneo até descobrirem a superfície, dando início à jornada para libertar a humanidade.",
+    ficha: {
+      "Local": "Mundo subterrâneo e superfície",
+      "Período": "Início da série",
+      "Personagens-chave": "Simón, Kamina"
+    },
+    momentos: [
+      "Simón encontra o mecha Lagann",
+      "Kamina inspira Simón a seguir em frente",
+      "Primeira exploração da superfície"
+    ]
+  },
+
+  rebelião: {
+    resumo: "A rebelião contra os homens fera começa a crescer, com Simón, Kamina e seus aliados lutando para libertar os humanos oprimidos.",
+    ficha: {
+      "Início da Rebelião": "Após a descoberta da superfície",
+      "Principais inimigos": "Homens Fera e subordinados do Rei Espiral",
+      "Líderes da Rebelião": "Simón e Kamina"
+    },
+    momentos: [
+      "Batalhas iniciais contra homens fera",
+      "Formação da equipe Dai-Gurren",
+      "Fortalecimento da resistência humana"
+    ]
+  },
+  
+  subterraneo: {
+    resumo: "O Mundo Subterrâneo é onde a humanidade viveu por gerações antes de descobrir a superfície, com a vila Giha sendo o berço de Simón e Kamina.",
+    ficha: {
+      "Localização": "Debaixo da superfície da Terra",
+      "Vila principal": "Giha",
+      "Características": "Escuridão, ambiente hostil e fechado"
+    },
+    momentos: [
+      "Nascimento de Simón e Kamina em Giha",
+      "Descoberta do mecha Lagann no subterrâneo",
+      "Decisão de subir para a superfície"
+    ]
+  },
+
+  Tepellin: {
+    resumo: "Tepellin é a fortaleza dos Homens Fera e base do tirano Lordgenome, conhecida por seu imenso Gunmen e destruição após o arco que marca a rebelião dos humanos.",
+    ficha: {
+      "Habitantes": "Homens Fera",
+      "Mecha principal": "Gunmen de Tepellin",
+      "Status": "Destruída após a rebelião"
+    },
+    momentos: [
+      "Domínio de Lordgenome sobre Tepellin",
+      "Confrontos entre rebeldes humanos e homens fera",
+      "Queda da cidade durante a revolta"
+    ]
+  },
+
+  "galaxia-Antiespiral": {
+    resumo: "A Galáxia Anti-Espiral é o vasto cosmos governado pela raça Anti-Espiral, inimigos temíveis que buscam impedir o crescimento infinito da energia espiral.",
+    ficha: {
+      "Governo": "Civilização Anti-Espiral",
+      "Objetivo": "Conter o poder espiral para evitar destruição",
+      "Relação": "Principal antagonista do anime"
+    },
+    momentos: [
+      "Revelação da ameaça Anti-Espiral",
+      "Confrontos finais entre Anti-Espiral e Gurren Lagann",
+      "Sacrifícios para salvar o universo"
+    ]
+  },
+    KaminaViral: {
+    resumo: "Kamina enfrenta Viral em um dos primeiros grandes confrontos do anime, marcando a resistência humana contra os Homens Fera e seus Gunmen.",
+    ficha: {
+      "Combatentes": "Kamina (Gurren) vs Viral",
+      "Local": "Superfície – campo de batalha improvisado",
+      "Resultado": "Empate com recuo de Viral"
+    },
+    momentos: [
+      "Primeira aparição de Viral",
+      "Gurren enfrenta um Gunmen de elite",
+      "Kamina inspira a vila e Simón"
+    ]
+  },
+
+  SimonLord: {
+    resumo: "A batalha entre Gurren Lagann e Lordgenome é o clímax da revolta contra o domínio subterrâneo, encerrando o reinado do tirano.",
+    ficha: {
+      "Combatentes": "Gurren Lagann vs Lordgenome",
+      "Mecha do vilão": "Mecha de Lordgenome",
+      "Resultado": "Vitória de Simón e queda de Tepellin"
+    },
+    momentos: [
+      "Confronto direto com Lordgenome",
+      "Simón assume o protagonismo",
+      "Explosão de energia espiral"
+    ]
+  },
+
+  SimonEspiral: {
+    resumo: "A batalha final entre Simón e o Anti-Espiral define o destino de todo o universo, com Tengen Toppa Gurren Lagann enfrentando um poder cósmico.",
+    ficha: {
+      "Combatentes": "Tengen Toppa Gurren Lagann vs Anti-Espiral",
+      "Local": "Plano interdimensional",
+      "Resultado": "Vitória de Simón e libertação do universo"
+    },
+    momentos: [
+      "Transformação em Tengen Toppa Gurren Lagann",
+      "Explosões de galáxias usadas como armas",
+      "Declaração da liberdade do espírito humano"
+    ]
+  },
+    EnergiaEspiral: {
+    resumo: "A Energia Espiral é a força vital que impulsiona a evolução, alimentada pela vontade, coragem e determinação dos seres vivos.",
+    ficha: {
+      "Origem": "Presente em todas as formas de vida em crescimento",
+      "Propriedades": "Ilimitada, ligada à evolução e à esperança",
+      "Utilização": "Fonte de poder dos Gunmen e de Simón"
+    },
+    momentos: [
+      "Descoberta do potencial espiral por Simón",
+      "Gurren Lagann desbloqueando novos níveis de poder",
+      "Conflito ideológico com o Anti-Espiral"
+    ]
+  },
+
+  AntiEspiral: {
+    resumo: "Os Anti-Espiral surgiram de uma civilização que temia o crescimento descontrolado da Energia Espiral e decidiram interromper a evolução em todo o universo.",
+    ficha: {
+      "Origem": "Civilização Espiral que se selou para evitar a destruição universal",
+      "Motivação": "Medo da Singularidade Espiral",
+      "Métodos": "Supressão total da evolução e da esperança"
+    },
+    momentos: [
+      "Revelação do verdadeiro inimigo",
+      "Batalha no universo Anti-Espiral",
+      "Choque de ideologias entre estagnação e progresso"
+    ]
+  },
+
+  LegadoEspiral: {
+    resumo: "Após o fim da guerra, os heróis deixam um legado baseado na confiança no potencial humano e no uso responsável da Energia Espiral.",
+    ficha: {
+      "Herdeiros": "Nova geração liderada por Gimmy e Darry",
+      "Mensagem": "Progresso com responsabilidade",
+      "Legado": "Paz e reconstrução do universo"
+    },
+    momentos: [
+      "Simón se afastando dos holofotes para deixar o mundo crescer",
+      "Transmissão do conhecimento espiral",
+      "Humanidade como nova guardiã do universo"
+    ]
+  }
+};
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.getAttribute('data-id');
+      const title = card.getAttribute('data-title');
+      const img = card.getAttribute('data-img');
+
+      const dados = textosDetalhados[id];
+
+      document.getElementById("modal-title").innerText = title;
+      document.getElementById("modal-img").src = img;
+      document.getElementById("modal-img").alt = title;
+
+      if (dados) {
+        document.getElementById("modal-resumo").innerText = dados.resumo;
+
+        // Preenche ficha técnica
+        const fichaUl = document.getElementById("modal-ficha");
+        fichaUl.innerHTML = "";
+        for (const chave in dados.ficha) {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${chave}:</strong> ${dados.ficha[chave]}`;
+          fichaUl.appendChild(li);
+        }
+
+        // Preenche momentos marcantes
+        const momentosUl = document.getElementById("modal-momentos");
+        momentosUl.innerHTML = "";
+        dados.momentos.forEach(momento => {
+          const li = document.createElement("li");
+          li.textContent = momento;
+          momentosUl.appendChild(li);
+        });
+      }
+
+      document.getElementById("modal").classList.add("show");
+    });
   });
-});
-
-// Função para fechar o modal
 function fecharModal() {
   document.getElementById("modal").classList.remove("show");
 }
-</script> 
+window.addEventListener('load', () => {
+  const nomeUsuario = sessionStorage.NOME_USUARIO;
+  const userInfo = document.getElementById('userInfo');
+  const spanUsuario = document.getElementById('b_usuario');
+  const btnLogin = document.getElementById('btn-login');
+  const btnCadastro = document.getElementById('btn-cadastro');
+
+  if (nomeUsuario) {
+    // Atualiza o nome do usuário
+    spanUsuario.textContent = nomeUsuario;
+
+    // Mostra o bloco do usuário
+    userInfo.style.display = 'flex';  // ou block, dependendo do seu CSS
+
+    // Esconde os botões de login e cadastro
+    if (btnLogin) btnLogin.style.display = 'none';
+    if (btnCadastro) btnCadastro.style.display = 'none';
+  } else {
+    // Caso não esteja logado, esconde o bloco do usuário
+    if (userInfo) userInfo.style.display = 'none';
+
+    // E mostra os botões
+    if (btnLogin) btnLogin.style.display = 'inline-block';
+    if (btnCadastro) btnCadastro.style.display = 'inline-block';
+  }
+});
+</script>

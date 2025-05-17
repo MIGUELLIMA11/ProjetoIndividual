@@ -9,37 +9,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <header class="header">
-        <h1>Gurren Lagann Quiz Dashboard</h1>
-        <div class="usuario"><span id="b_usuario"></span></div>
-    </header>
-
-    <main class="dashboard">
-        <section class="kpis">
-            <div class="kpi-card">
-                <h3>Acertos</h3>
-                <p id="kpiAcertos">--</p>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="user-profile">
+                <i class="fas fa-user-circle fa-3x"></i>
+                <span id="b_usuario">Usuário</span>
             </div>
-            <div class="kpi-card">
-                <h3>Erros</h3>
-                <p id="kpiErros">--</p>
-            </div>
-            <div class="kpi-card">
-                <h3>Ranking</h3>
-                <p id="kpiRanking">--</p>
-            </div>
-        </section>
-
-        <section class="aquarios">
-            <div id="btnAquario" class="botoes-aquario"></div>
-            <div id="graficos" class="graficos"></div>
-        </section>
-    </main>
-    
+            <nav class="menu">
+                <a href="#">Dashboard</a>
+                <a href="#">Configurações</a>
+                <a href="../PaginaHome/PaginaHome.html">Sair</a>
+            </nav>
+        </aside>
+        <div class="main"> 
+        <div class="main-content">
+            <header class="header">
+                <h1>Gurren Lagann Quiz Dashboard</h1>
+            </header>
+            <section class="kpis">
+                <div class="kpi-card">
+                    <h3>Tentativas</h3>
+                    <p id="kpiTentativas">--</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Media de acertos</h3>
+                    <p id="kpiAcertos">--</p>
+                </div>
+                <div class="kpi-card">
+                    <h3>Media de erros</h3>
+                    <p id="kpiErros">--</p>
+                </div>
+                 <div class="kpi-card">
+                    <h3>Perguntas</h3>
+                    <p id="kpiRPerguntas">--</p>
+                </div>
+            </section>
+            <section class="graficos">
+                <h2 class="tituloGraficos">Desempenho</h2>
+                <div id="graficos" class="graph"></div>
+            </section>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 <script>
-    
  var idUsuario = sessionStorage.getItem('ID_USUARIO');
  console.log("ID_USUARIO:", sessionStorage.getItem("ID_USUARIO"));
 
@@ -117,86 +131,103 @@ function obterDadosGrafico(idUsuario) {
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idUsuario
-    ) {
-        
+  function plotarGrafico(resposta, idUsuario) {
+    console.log('iniciando plotagem do gráfico...');
 
-        console.log('iniciando plotagem do gráfico...');
+    let labels = [];
+    let dadosAcertos = [];
+    let dadosErros = [];
+    let tempos = [];
 
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
+    for (let i = 0; i < resposta.length; i++) {
+        let registro = resposta[i];
+        labels.push(registro.idTentativa);          // Label eixo X = idTentativa
+        dadosAcertos.push(registro.Acertos);
+        dadosErros.push(registro.Erros);
+        tempos.push(registro.tempo_minutos_segundos); // Guarda o tempo para tooltip
+    }
 
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
+    let dados = {
+        labels: labels,
+        datasets: [
+            {
                 label: 'Acertos',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                data: dadosAcertos,
+                backgroundColor: 'rgba(0, 255, 0, 0.6)', 
+                borderColor: 'rgb(0, 255, 0)',
+                tension: 0.1,
+                // Vamos adicionar tooltip customizado abaixo
             },
             {
                 label: 'Erros',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
+                data: dadosErros,
+                backgroundColor: 'rgba(255, 0, 0, 0.6)',
+                borderColor: 'rgb(255, 0, 0)',
+                tension: 0.1,
+            }
+        ]
+    };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(new Date(registro.dt_inicio).toLocaleTimeString());
-            dados.datasets[0].data.push(registro.acertos);
-            dados.datasets[1].data.push(registro.erros);
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-        // Verifica se já existe o canvas, senão cria
-let divGraficos = document.getElementById('graficos');
-let graficoExistente = document.getElementById(`myChartCanvas${idUsuario}`);
-
-if (!graficoExistente) {
-    let canvas = document.createElement('canvas');
-    canvas.id = `myChartCanvas${idUsuario}`;
-    divGraficos.appendChild(canvas);
-}
-
-
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'bar',
-            data: dados,
-        };
-
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idUsuario}`),
-            config
-        );
-
-        setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+    // Cria canvas se não existir
+    let divGraficos = document.getElementById('graficos');
+    let graficoExistente = document.getElementById(`myChartCanvas${idUsuario}`);
+    if (!graficoExistente) {
+        let canvas = document.createElement('canvas');
+        canvas.id = `myChartCanvas${idUsuario}`;
+        divGraficos.appendChild(canvas);
     }
 
+    const config = {
+        type: 'bar',
+        data: dados,
+        options: {
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            let idx = context.dataIndex;
+                            let tempo = tempos[idx] || '';
+                            return `${label}: ${context.parsed.y} (${tempo})`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'ID da Tentativa'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Quantidade'
+                    }
+                }
+            }
+        }
+    };
 
+    let myChart = new Chart(
+        document.getElementById(`myChartCanvas${idUsuario}`),
+        config
+    );
+
+    setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+}
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
     // buscando a última medida inserida em tabela contendo as capturas, 
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idUsuario, dados, myChart) {
+   /* function atualizarGrafico(idUsuario, dados, myChart) {
 
         fetch(`/medidas/tempo-real/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -246,7 +277,7 @@ if (!graficoExistente) {
         })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+            }); 
 
-    }
+    } */ 
 </script>

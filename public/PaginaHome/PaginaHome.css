@@ -1,270 +1,276 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-
-  body {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #f0f0f0;
-    color: #fff;
-    overflow-x: hidden;
-    padding-top: 150px
-  }
-  
-  /* Cabeçalho */
-
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 150px; 
-    background-image: url('../assets/Header.jpg');
-    background-size: cover;
-    background-position: top center; 
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-    border-bottom: 3px solid #f00;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-  
-  
-  .header-content h1 {
-    font-size: 2.5rem; 
-    margin-bottom: 5px; 
-    position: relative;
-  }
-  
-  .header-content p {
-    font-size: 1.2rem; 
-    max-width: 500px; 
-    margin: 0 auto;
-  }
-  
- 
-  .gunmen-icon {
-    width: 30px; 
-    height: 30px; 
-    background-image: url('../assets/IconMecha.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: inline-block;
-    margin-right: 8px; 
-    border-radius: 50%;
-    border: 2px solid #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-  }
-  
-  .gunmen-icon:hover {
-    transform: scale(1.1);
-  }
-  
-  
-  .header-nav ul {
-    display: flex;
-    list-style: none;
-    margin-top: 20px;
-  }
-  
-  .header-nav li {
-    margin-right: 20px;
-  }
-  
-  .header-nav a {
-    color: #fff;
-    font-size: 1.2rem;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease; 
-  }
-  
-  .header-nav a:hover {
-    color: #f00;
-  }
 
-  .content-section {
-    padding: 60px 20px;
-    color: #fff;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    scroll-margin-top: 150px; 
-  }
-  .content-section:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-  }
-  
-  .content-section h2, .content-section p {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px #000;
-    transition: background-color 0.3s ease;
-  }
-  
-  .content-section h2:hover, .content-section p:hover {
-    background-color: rgba(0, 0, 0, 0.7); 
-  }
-  
-  /* Seções com fundo específico */
-  .historia { background-image: url('../assets/Historia.webp'); }
-  .personagens { background-image: url('../assets/Personagens.jpg'); }
-  .gunmen { background-image: url('../assets/Gunmen.png'); }
-  .universo { background-image: url('../assets/UniverseReal.webp'); }
-  .batalhas { background-image: url('../assets/Batalhas.gif'); }
-  .Espiral { background-image: url('../assets/Espiral.gif'); }
-  
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #f0f0f0;
+  color: #fff;
+  overflow-x: hidden;
+  padding-top: 150px;
+}
 
-  .content-section h2 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  .historia p {
-    margin-top: -20px; 
-  }
-  
+/* Cabeçalho */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-image: url('../assets/Header.jpg');
+  background-size: cover;
+  background-position: top center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  border-bottom: 3px solid #f00;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-top: 1rem;
+}
 
-  html {
-    scroll-behavior: smooth; 
-    scroll-padding-top: 0px; /
-  }
-  
-  .icon-historia {
-    background-image: url('../assets/HistoriaReal.gif');
-  }
-  
-  .icon-personagens {
-    background-image: url('../assets/PersonagensReal.gif');
-  }
-  
-  .icon-gunmen {
-    background-image: url('../assets/Gunmengif.gif');
-  }
-  
-  .icon-universo {
-    background-image: url('../assets/UniverseVerdade.gif');
-  }
-  
-  .icon-batalhas {
-    background-image: url('../assets/Batalhas.gif');
-  }
-  
-  .icon-Espiral {
-    background-image: url('../assets/Espiral.gif');
-  }
-  .icon-play{
-    background-image: url(../assets/playIcon.png);
-  }
-  .icon-sair{
-    background-image: url();
-  }
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
-    background-color: transparent; 
-    margin-top: -60px; 
-  }
-  
-  .card {
-    background-color: #2c2c2c;
-    color: #fff;
-    border-radius: 15px;
-    padding: 20px;
-    width: 250px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-  }
-  
-  .card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .card p {
-    font-size: 1rem;
-  }
-  
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
-  }
-  .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
-  }
-  
-  .card.simon:hover {
-    box-shadow: 0 8px 20px rgba(0, 255, 0, 0.6); 
-  }
-  
-  .card.kamina:hover {
-    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.8); 
-  }
-  
-  .card.yoko:hover {
-    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6); 
-  }
-  
-  .card.nia:hover {
-    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.8); 
-  }
-  #personagens h2 {
-    margin-bottom: 90px; 
-    margin-top: -90px;   
-  }
+/* NAV atualizado */
+.header-nav {
+  width: 100%;
+  margin-top: 2rem; /* aumente o espaçamento para descer mais */
+  padding-left: 2rem; /* empurra os itens para a esquerda */
+  display: flex;
+  justify-content: flex-start; /* alinha à esquerda */
+}
+.header-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.header-nav li a {
+  color: white;
+  font-size: 1.5rem; /* tamanho maior */
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+.gunmen-icon {
+  width: 30px;
+  height: 30px;
+  background-image: url('../assets/IconMecha.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.gunmen-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Botões de Login/Cadastro */
+.auth-buttons {
+  position: absolute;
+  top: 10px; /* você pode ajustar conforme necessário */
+  right: 20px;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-login,
+.btn-cadastro {
+  padding: 0.5rem 1rem;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  text-shadow: 0 0 5px #000;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover,
+.btn-cadastro:hover {
+  background: #ff0000;
+  color: #fff;
+  border-color: #ff0000;
+  transform: scale(1.05);
+}
+
+/* Conteúdo principal */
+.content-section {
+  padding: 60px 20px;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  scroll-margin-top: 150px;
+}
+
+.content-section:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+}
+
+.content-section h2,
+.content-section p {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #000;
+  transition: background-color 0.3s ease;
+}
+
+.content-section h2:hover,
+.content-section p:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Seções específicas */
+.historia { background-image: url('../assets/Historia.webp'); }
+.personagens { background-image: url('../assets/Personagens.jpg'); }
+.gunmen { background-image: url('../assets/Gunmen.png'); }
+.universo { background-image: url('../assets/UniverseReal.webp'); }
+.batalhas { background-image: url('../assets/Batalhas.gif'); }
+.Espiral { background-image: url('../assets/Espiral.gif'); }
+
+.content-section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.historia p {
+  margin-top: -20px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0px;
+}
+
+/* Ícones individuais */
+.icon-historia { background-image: url('../assets/HistoriaReal.gif'); }
+.icon-personagens { background-image: url('../assets/PersonagensReal.gif'); }
+.icon-gunmen { background-image: url('../assets/Gunmengif.gif'); }
+.icon-universo { background-image: url('../assets/UniverseVerdade.gif'); }
+.icon-batalhas { background-image: url('../assets/Batalhas.gif'); }
+.icon-Espiral { background-image: url('../assets/Espiral.gif'); }
+.icon-play { background-image: url('../assets/playIcon.png'); }
+.icon-sair { background-image: url('../assets/sair.jpg'); }
+
+/* Cards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  background-color: transparent;
+  margin-top: -60px;
+}
+
+.card {
+  background-color: #2c2c2c;
+  color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+.card.simon:hover {
+  box-shadow: 0 8px 20px rgba(0, 255, 0, 0.6);
+}
+
+.card.kamina:hover {
+  box-shadow: 0 8px 20px rgba(255, 69, 0, 0.8);
+}
+
+.card.yoko:hover {
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.6);
+}
+
+.card.nia:hover {
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.8);
+}
+
+#personagens h2 {
+  margin-bottom: 90px;
+  margin-top: -90px;
+}
+
+/* Modal */
 .modal {
   position: fixed;
-  top: 50%; /* Centraliza verticalmente */
-  left: 50%; /* Centraliza horizontalmente */
-  transform: translate(-50%, -50%); /* Ajusta para que o modal seja 100% centralizado */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 80%;
   max-width: 600px;
-  height: auto;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
-  display: none; /* Inicialmente escondido */
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
   justify-content: center;
   align-items: center;
   transition: opacity 0.3s ease;
-  opacity: 0; /* Modal invisível inicialmente */
-  z-index: 1100; /* Garante que o modal fique sobre outros elementos */
+  opacity: 0;
+  z-index: 1100;
 }
 
 .modal.show {
-  display: flex; /* Exibe o modal */
-  opacity: 1; /* Modal visível */
+  display: flex;
+  opacity: 1;
 }
 
 .modal-content {
   background-color: black;
   padding: 20px;
   border-radius: 10px;
-  width: 100%;
+  width: 50%;
   max-width: 600px;
   position: relative;
 }
@@ -281,4 +287,40 @@
   right: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.modal-resumo {
+  margin-bottom: 10px;
+}
+
+.modal-ficha {
+  margin-bottom: 10px;
+}
+.user-info {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  display: none; /* começa escondido */
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+  z-index: 1001;
+}
+
+.user-info.active {
+  display: flex;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-image: url('../assets/icon2.jpg'); /* ícone do usuário */
+  background-size: cover;
+  background-position: center;
 }

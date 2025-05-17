@@ -186,4 +186,98 @@ html {
     background-color: #cc0000; 
     transform: scale(0.98); 
   }
-  
+  .selected {
+  background-color: #ff9d1a; /* verde claro */
+  border: 2px solid  #ff9d1a;
+}
+.resultado-box {
+  background-color: #1b1b1b; /* preto quase */
+  color: #ffb347; /* amarelo-laranja */
+  border-radius: 15px;
+  padding: 40px 50px;
+  max-width: 450px;
+  margin: 50px auto;
+  box-shadow: 0 0 30px #ff4c4c; /* brilho vermelho */
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  border: 3px solid #ff4c4c;
+  position: relative;
+}
+
+.resultado-box::before {
+  content: "";
+  position: absolute;
+  top: -10px; left: -10px; right: -10px; bottom: -10px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #ff4c4c, #ffb347, #ff4c4c);
+  filter: blur(12px);
+  opacity: 0.7;
+  z-index: -1;
+  animation: pulseGlow 2.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.5;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 0.8;
+    filter: blur(15px);
+  }
+}
+
+.resultado-box h3 {
+  font-size: 2.5em;
+  margin-bottom: 25px;
+  color: #ff4c4c;
+  text-shadow: 0 0 8px #ff4c4c, 0 0 15px #ffb347;
+}
+
+.resultado-box p {
+  font-size: 1.3em;
+  margin: 15px 0;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.resultado-box button {
+  margin: 15px 12px 0 12px;
+  padding: 12px 30px;
+  font-size: 1.1em;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  transition: all 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 10px #ff4c4c;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.btn-reiniciar {
+  background-color: #ff4c4c;
+  color: #1b1b1b;
+  box-shadow: 0 0 20px #ff4c4c;
+}
+
+.btn-reiniciar:hover {
+  background-color: #ff301f;
+  box-shadow: 0 0 25px #ff301f, 0 0 40px #ffb347;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.btn-dashboard {
+  background-color: #ffb347;
+  color: #1b1b1b;
+  box-shadow: 0 0 20px #ffb347;
+}
+
+.btn-dashboard:hover {
+  background-color: #ff9d1a;
+  box-shadow: 0 0 25px #ff9d1a, 0 0 40px #ff4c4c;
+  color: #1b1b1b;
+  transform: scale(1.05);
+}

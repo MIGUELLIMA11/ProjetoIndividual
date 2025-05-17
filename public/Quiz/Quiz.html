@@ -34,15 +34,15 @@
     <button onclick="atualizarPergunta()" id="nextBtn">Próxima pergunta</button>
   </div>
 
-  <div id="resultado" style="display: none;">
+   <div id="resultado-container" style="display: none;">
     <h3>Resultado</h3>
-    <p>Acertos: <span id="acertos"></span></p>
-    <p>Erros: <span id="erros"></span></p>
-    <p>Respostas Respondidas: <span id="respondidas"></span></p>
+    <p>Acertos: <span id="acertos">0</span></p>
+    <p>Erros: <span id="erros">0</span></p>
+    <p>Respostas Respondidas: <span id="respondidas">0</span></p>
+    <button id="restartBtn">Tentar novamente</button>
+    <button id="dashboardBtn">Dashboard</button>
   </div>
-  <button onclick="reiniciarQuiz()" id="restartBtn" style="display: none;">Tentar novamente</button>
 </body>
-
 </html>
 
 <script>
@@ -108,75 +108,226 @@
       respostaCerta: "C"
     }
   ];
+  const contagemRespostas = {
+  A: 0,
+  B: 0,
+  C: 0,
+  D: 0
+};
 
-  var perguntaAtual = 0;
-  var acertos = 0;
-  var erros = 0;
-  var respondidas = 0;
+const contagemErros = {
+  A: 0,
+  B: 0,
+  C: 0,
+  D: 0
+};
+  let perguntaAtual = 0;
+  let acertos = 0;
+  let erros = 0;
+  let respondidas = 0;
+  let idTentativa = null;
+  let respostaSelecionada = null;
 
+  const perguntaElement = document.getElementById("pergunta");
+  const respostaA = document.getElementById("respostaA");
+  const respostaB = document.getElementById("respostaB");
+  const respostaC = document.getElementById("respostaC");
+  const respostaD = document.getElementById("respostaD");
+  const nextBtn = document.getElementById("nextBtn");
+  const resultadoDiv = document.getElementById("resultado");
+  const restartBtn = document.getElementById("restartBtn");
+
+  // Atualiza a pergunta e respostas na tela
   function atualizarPergunta() {
-    const perguntaElement = document.getElementById("pergunta");
-    const respostaA = document.getElementById("respostaA");
-    const respostaB = document.getElementById("respostaB");
-    const respostaC = document.getElementById("respostaC");
-    const respostaD = document.getElementById("respostaD");
 
-    perguntaElement.textContent = perguntas[perguntaAtual].pergunta;
 
-    respostaA.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[0];
-    respostaB.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[1];
-    respostaC.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[2];
-    respostaD.querySelector("h2").textContent = perguntas[perguntaAtual].respostas[3];
+    const p = perguntas[perguntaAtual];
+    perguntaElement.textContent = p.pergunta;
+    respostaA.querySelector("h2").textContent = "A) " + p.respostas[0];
+    respostaB.querySelector("h2").textContent = "B) " + p.respostas[1];
+    respostaC.querySelector("h2").textContent = "C) " + p.respostas[2];
+    respostaD.querySelector("h2").textContent = "D) " + p.respostas[3];
 
-    // Limpar seleções anteriores
-    document.querySelectorAll('.cardA, .cardB, .cardC, .cardD').forEach(card => card.classList.remove('selected'));
+    [respostaA, respostaB, respostaC, respostaD].forEach(card => {
+      card.classList.remove("selected");
+      card.style.cursor = "pointer";
+    });
   }
 
-  function verificarResposta(resposta) {
-    var respostaCerta = perguntas[perguntaAtual].respostaCerta;
-    
-    if (resposta === respostaCerta) {
-      acertos++;
-    } else {
-      erros++;
-    }
+  // Marca a resposta selecionada e habilita o botão próximo
+ function selecionarResposta(card, letra) {
+  respostaSelecionada = letra;
 
-    respondidas++;
-    perguntaAtual++;
+  // Remove seleção anterior
+  [respostaA, respostaB, respostaC, respostaD].forEach(c => c.classList.remove("selected"));
 
-    if (perguntaAtual < perguntas.length) {
-      atualizarPergunta();
-    } else {
-      exibirResultado();
-    }
-  }
-
-  function exibirResultado() {
-  document.getElementById("resultado").style.display = "block";
-  document.getElementById("acertos").textContent = acertos;
-  document.getElementById("erros").textContent = erros;
-  document.getElementById("respondidas").textContent = respondidas;
-  document.getElementById("nextBtn").style.display = "none";
-  document.getElementById("restartBtn").style.display = "inline-block";
+  // Marca a nova
+  card.classList.add("selected");
+  nextBtn.disabled = false;
 }
-  document.getElementById("respostaA").addEventListener("click", () => verificarResposta("A"));
-  document.getElementById("respostaB").addEventListener("click", () => verificarResposta("B"));
-  document.getElementById("respostaC").addEventListener("click", () => verificarResposta("C"));
-  document.getElementById("respostaD").addEventListener("click", () => verificarResposta("D"));
 
-  atualizarPergunta();
+  respostaA.addEventListener("click", () => selecionarResposta(respostaA, "A"));
+  respostaB.addEventListener("click", () => selecionarResposta(respostaB, "B"));
+  respostaC.addEventListener("click", () => selecionarResposta(respostaC, "C"));
+  respostaD.addEventListener("click", () => selecionarResposta(respostaD, "D"));
 
-  function reiniciarQuiz() {
+  nextBtn.addEventListener("click", () => {
+  if (respostaSelecionada === null) return;
+
+  const correta = perguntas[perguntaAtual].respostaCerta;
+  const acertou = respostaSelecionada === correta;
+
+  contagemRespostas[respostaSelecionada]++;
+  if (!acertou) contagemErros[respostaSelecionada]++;
+
+  if (acertou) acertos++;
+  else erros++;
+
+  respondidas++;
+  perguntaAtual++;
+
+  if (perguntaAtual < perguntas.length) {
+    atualizarPergunta();
+  } else {
+    exibirResultado();
+    enviarResultadoFinal();
+
+  }
+});
+
+  // Inicia a tentativa do quiz no backend
+  function iniciarTentativaQuiz() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+    if (!idUsuario) {
+      alert("Usuário não está logado. Não é possível iniciar o quiz.");
+      return;
+    }
+
+    fetch("/quiz/iniciar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fkUsuario: idUsuario, fkQuiz: 1 })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Erro ao iniciar tentativa");
+        return res.json();
+      })
+      .then(json => {
+        idTentativa = json.idTentativa;
+        sessionStorage.ID_TENTATIVA = idTentativa;
+        console.log("Tentativa iniciada:", idTentativa);
+      })
+      .catch(err => {
+        console.error("Erro ao iniciar tentativa:", err);
+        alert("Erro ao iniciar o quiz.");
+      });
+  }
+ // Exibe o resultado final na tela
+function exibirResultado() {
+  // Limpa todo o conteúdo da div .fundo
+  const fundo = document.querySelector(".fundo");
+  fundo.innerHTML = ""; // limpa tudo dentro
+
+  // Cria o container do resultado
+  const resultadoBox = document.createElement("div");
+  resultadoBox.classList.add("resultado-box");
+
+  // Cria os elementos de texto
+  const titulo = document.createElement("h3");
+  titulo.textContent = "Resultado";
+
+  const pAcertos = document.createElement("p");
+  pAcertos.textContent = `Acertos: ${acertos}`;
+
+  const pErros = document.createElement("p");
+  pErros.textContent = `Erros: ${erros}`;
+
+  const pRespondidas = document.createElement("p");
+  pRespondidas.textContent = `Respondidas: ${respondidas}`;
+
+  // Botão reiniciar
+  const btnReiniciar = document.createElement("button");
+  btnReiniciar.textContent = "Tentar novamente";
+  btnReiniciar.classList.add("btn-reiniciar");
+  // Botão dashboard
+  const btnDashboard = document.createElement("button");
+  btnDashboard.textContent = "Dashboard";
+  btnDashboard.classList.add("btn-dashboard");
+  btnDashboard.addEventListener("click", () => {
+    window.location.href = "../Dashboard/Dashboard.html"; // ajuste seu caminho aqui
+  });
+
+  // Adiciona tudo no container resultadoBox
+  resultadoBox.appendChild(titulo);
+  resultadoBox.appendChild(pAcertos);
+  resultadoBox.appendChild(pErros);
+  resultadoBox.appendChild(pRespondidas);
+  resultadoBox.appendChild(btnReiniciar);
+  resultadoBox.appendChild(btnDashboard);
+
+  // Adiciona resultadoBox na div fundo
+  fundo.appendChild(resultadoBox);
+}
+
+  // Envia o resultado final para o backend
+  function enviarResultadoFinal() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+    if (!idUsuario || !idTentativa) {
+      alert("Usuário ou tentativa não definidos. Resultado não será enviado.");
+      return;
+    }
+
+    fetch("/quiz/finalizar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fkUsuario: idUsuario,
+        fkQuiz: 1,
+        idTentativa: idTentativa,
+        acertos: acertos,
+        erros: erros,
+        total: respondidas
+      })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Erro ao enviar resultado final");
+        return res.json();
+      })
+      .then(data => {
+        console.log("Resultado final salvo:", data);
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Não foi possível salvar o resultado final do quiz.");
+      });
+  }
+
+  // Reinicia o quiz localmente e recomeça a tentativa
+function reiniciarQuiz() {
+  // Resetar contadores
   perguntaAtual = 0;
   acertos = 0;
   erros = 0;
   respondidas = 0;
+  respostaSelecionada = null;
 
-  document.getElementById("resultado").style.display = "none";
-  document.getElementById("restartBtn").style.display = "none";
-  document.getElementById("nextBtn").style.display = "inline-block";
+  // Mostrar quiz e esconder resultado
+  document.getElementById("pergunta").style.display = "block";
+  document.getElementById("resultado-container").style.display = "none";
 
+  // Atualizar a primeira pergunta
   atualizarPergunta();
-}
 
+  // Reiniciar tentativa no backend (se necessário)
+  if(typeof iniciarTentativaQuiz === 'function') {
+    iniciarTentativaQuiz();
+  }
+}
+  restartBtn.addEventListener("click", reiniciarQuiz);
+
+  // Inicialização do quiz
+  window.onload = () => {
+    atualizarPergunta();
+    iniciarTentativaQuiz();
+  };
 </script>

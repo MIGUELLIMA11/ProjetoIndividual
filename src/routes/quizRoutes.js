@@ -1,7 +1,7 @@
 // routes/quizRoutes.js
 const express = require('express');
 const router = express.Router();
-const quizController = require('../controllers/quizControllers');
+const quizContro = require('../controllers/QuizControlador');
 
 // Rota para buscar tentativas
 router.get('/tentativas/:idUsuario', quizController.buscarTentativas);

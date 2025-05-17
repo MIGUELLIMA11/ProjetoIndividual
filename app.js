@@ -25,13 +25,9 @@ app.use("/", PaginaHomeRouter);
 app.use("/usuarios", usuarioRouter);
 const graficoRoutes = require('./src/routes/medidas');
 app.use('/medidas', graficoRoutes);
-const quizRoutes = require('./src/routes/quizRoutes');
-app.use('/quiz', quizRoutes);
+const QuizRotas = require('./src/routes/QuizRotas');
+app.use('/quiz', QuizRotas);
 
-// Iniciar o servidor
-app.listen(3000, () => {
-    console.log("Servidor rodando na porta 3000");
-});
 
 
 app.listen(PORTA_APP, function () {

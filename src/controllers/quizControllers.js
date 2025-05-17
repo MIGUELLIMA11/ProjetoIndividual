@@ -1,4 +1,4 @@
-// controllers/quizController.js
+
 const quizModel = require('../models/quizModel');  // Certifique-se de que o modelo existe
 
 // Função para buscar as tentativas do quiz de um usuário
