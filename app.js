@@ -29,7 +29,6 @@ const QuizRotas = require('./src/routes/QuizRotas');
 app.use('/quiz', QuizRotas);
 
 
-
 app.listen(PORTA_APP, function () {
     console.log(`
     \n\n\n                                                                                                 

@@ -41,11 +41,11 @@
                         <p id="kpiErros">--</p>
                     </div>
                     <div class="kpi-card">
-                        <h3>Pergunta mais acertada</h3>
+                        <h3>Tentativas sem erro</h3>
                         <p id="kpiRPerguntasA">--</p>
                     </div>
                     <div class="kpi-card">
-                        <h3>Pergunta mais errada</h3>
+                        <h3>Numero de perguntas respondidas</h3>
                         <p id="kpiRPerguntasE">--</p>
                     </div>
                     <div class="kpi-card">
@@ -155,7 +155,7 @@
             let registro = resposta[i];
             labels.push(registro.idTentativa);          // Label eixo X = idTentativa
             dadosAcertos.push(registro.Acertos);
-            dadosErros.push(registro.Erros);
+            dadosErros.push(registro.erros);
             tempos.push(registro.tempo_minutos_segundos); // Guarda o tempo para tooltip
         }
 
@@ -238,25 +238,23 @@
         console.log('Plotando gráfico de dispersão...');
 
         const dadosDispersao = resposta.map(registro => {
-            const partes = registro.tempo_minutos_segundos.split(':');
-            const tempoSegundos = parseInt(partes[0]) * 60 + parseInt(partes[1]);
-
+            const tempoSegundos = converterTempoParaSegundos(registro.tempo_minutos_segundos);
             return {
                 x: tempoSegundos,
                 y: registro.Acertos
             };
         });
-
         const divGraficos = document.getElementById('graficosDispersao');
 
         // Evita duplicação ao recarregar
-        let canvasExistente = document.getElementById('scatterChart');
+        const canvasId = `scatterChart${idUsuario}`;
+        let canvasExistente = document.getElementById(canvasId);
         if (canvasExistente) {
             canvasExistente.remove();
         }
 
         const canvas = document.createElement('canvas');
-        const canvasId = `scatterChart${idUsuario}`;
+        canvas.id = canvasId; // <<--- IMPORTANTE!
         divGraficos.appendChild(canvas);
         const ctx = canvas.getContext('2d');
 
@@ -324,10 +322,19 @@
         let somaErros = 0;
         let somaTempoSegundos = 0;
         let contadorTempoValido = 0;
+        let totalPerguntasRespondidas = 0;
+        let tentativasSemErro = 0;
+
         tentativas.forEach(t => {
             somaAcertos += t.Acertos;
-            somaErros += t.Erros;
+            somaErros += t.erros;
 
+            totalPerguntasRespondidas += (t.Acertos + t.erros);
+
+            // Contar tentativas sem erro
+            if (t.erros === 0) {
+                tentativasSemErro++;
+            }
             if (t.tempo_minutos_segundos) {
                 let tempoSegundos = converterTempoParaSegundos(t.tempo_minutos_segundos);
                 if (!isNaN(tempoSegundos)) {
@@ -336,6 +343,8 @@
                 }
             }
         });
+        document.getElementById('kpiRPerguntasE').textContent = totalPerguntasRespondidas;
+        document.getElementById('kpiRPerguntasA').textContent = tentativasSemErro;
         document.getElementById('kpiAcertos').textContent = (somaAcertos / tentativas.length).toFixed(2);
         document.getElementById('kpiErros').textContent = (somaErros / tentativas.length).toFixed(2);
 

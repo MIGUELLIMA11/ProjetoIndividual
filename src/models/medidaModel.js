@@ -7,7 +7,7 @@ function buscarUltimasTentativas(idUsuario) {
     t.DtInicio AS dt_inicio,
     t.DtFinal AS dt_final,
     t.Acertos,
-    t.Erros,
+    t.erros,
     q.titulo AS nome_quiz,
     CONCAT(
         FLOOR(TIMESTAMPDIFF(SECOND, t.DtInicio, t.DtFinal) / 60), 'm ',

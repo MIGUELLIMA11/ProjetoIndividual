@@ -15,8 +15,9 @@
     <a href="../PaginaHome/PaginaHome.html"><span class="voltar">Voltar</span></a>
   </header>
 
-  <div class="fundo">
-    <div class="pergunta">
+
+    <div class="fundo" id="quiz-container">
+   <div class="pergunta">
       <h2 id="pergunta">Qual é o nome do arco onde Simon enfrenta o Lord Genome?</h2>
     </div>
     <div class="cardA" id="respostaA">
@@ -33,7 +34,8 @@
     </div>
     <button onclick="atualizarPergunta()" id="nextBtn">Próxima pergunta</button>
   </div>
-
+</div>
+  
    <div id="resultado-container" style="display: none;">
     <h3>Resultado</h3>
     <p>Acertos: <span id="acertos">0</span></p>
@@ -222,17 +224,15 @@ const contagemErros = {
         alert("Erro ao iniciar o quiz.");
       });
   }
- // Exibe o resultado final na tela
-function exibirResultado() {
-  // Limpa todo o conteúdo da div .fundo
-  const fundo = document.querySelector(".fundo");
-  fundo.innerHTML = ""; // limpa tudo dentro
 
-  // Cria o container do resultado
+function exibirResultado() {
+
+  const fundo = document.querySelector(".fundo");
+  fundo.innerHTML = ""; 
+
   const resultadoBox = document.createElement("div");
   resultadoBox.classList.add("resultado-box");
 
-  // Cria os elementos de texto
   const titulo = document.createElement("h3");
   titulo.textContent = "Resultado";
 
@@ -245,16 +245,17 @@ function exibirResultado() {
   const pRespondidas = document.createElement("p");
   pRespondidas.textContent = `Respondidas: ${respondidas}`;
 
-  // Botão reiniciar
+
   const btnReiniciar = document.createElement("button");
   btnReiniciar.textContent = "Tentar novamente";
   btnReiniciar.classList.add("btn-reiniciar");
-  // Botão dashboard
+    btnReiniciar.addEventListener("click", reiniciarQuiz); 
+
   const btnDashboard = document.createElement("button");
   btnDashboard.textContent = "Dashboard";
   btnDashboard.classList.add("btn-dashboard");
   btnDashboard.addEventListener("click", () => {
-    window.location.href = "../Dashboard/Dashboard.html"; // ajuste seu caminho aqui
+    window.location.href = "../Dashboard/Dashboard.html"; 
   });
 
   // Adiciona tudo no container resultadoBox
@@ -302,9 +303,9 @@ function exibirResultado() {
       });
   }
 
-  // Reinicia o quiz localmente e recomeça a tentativa
+
 function reiniciarQuiz() {
-  // Resetar contadores
+
   perguntaAtual = 0;
   acertos = 0;
   erros = 0;

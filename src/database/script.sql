@@ -10,14 +10,20 @@ Senha VARCHAR(45));
 
 Create table Quiz(
 idQuiz INT PRIMARY KEY AUTO_INCREMENT,
-Acertos int, 
-erros int,
-Total int);
+Titulo Varchar(45),
+Tamanho int,
+DtCriacao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
+INSERT INTO Quiz (idQuiz,Titulo, Tamanho,DtCriacao) values
+(default,"Gurren Lagann", 10, "2025-05-01");
 CREATE TABLE Tentativas (
     idTentativa INT PRIMARY KEY AUTO_INCREMENT,
     FkUsuario INT,
     FkQuiz INT,
+    Acertos int, 
+	erros int,
+	Total int,
     DtInicio DATETIME,
     DtFinal DATETIME,
     FOREIGN KEY (FkUsuario) REFERENCES Usuarios(idUsuario),
